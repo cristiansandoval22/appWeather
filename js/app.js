@@ -10,9 +10,9 @@ search.addEventListener('click', () => {
     const city = document.querySelector('.search-box input').value;
 
     if (city === '')
-        return console.log("hola");
-
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
+        return;
+    
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`)
         .then(response => response.json())
         .then(json => {
 
@@ -59,10 +59,10 @@ search.addEventListener('click', () => {
                     image.src = '';
             }
 
-            temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
+            temperature.innerHTML = `${(json.main.temp)}<span>°C</span>`;
             description.innerHTML = `${json.weather[0].description}`;
             humidity.innerHTML = `${json.main.humidity}%`;
-            wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
+            wind.innerHTML = `${json.wind.speed}Km/h`;
 
             weatherBox.style.display = '';
             weatherDetails.style.display = '';
